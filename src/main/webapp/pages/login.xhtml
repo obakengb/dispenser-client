@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title></title>
+</h:head>
+
+<h:body>
+    <p:dialog id="dialog" header="Login" width="500" widgetVar="dlg" visible="true" closable="false" showEffect="clip" draggable="false" resizable="false" styleClass="customDialog" style="box-shadow: 7px 10px 5px #303030; background: #f2f2f2">
+
+        <p:panelGrid columns="1" style="margin: 0 auto;" class="ui-noborder">
+
+            <p:panelGrid columns="2" style="margin: 0 auto" class="ui-noborder">
+                <h:form>
+                    <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true"/>
+
+                    <p:panelGrid columns="3" style="margin: 0 auto" class="ui-noborder">
+                        <p:outputLabel value="Username" for="username"/>
+                        <p:inputText id="username" value="#{loginBean.username}" required="true" requiredMessage="Username is required"/>
+                        <p:message for="username"/>
+
+                        <p:outputLabel value="Password" for="password"/>
+                        <p:inputText id="password" value="#{loginBean.password}" required="true" requiredMessage="Password is required"/>
+                        <p:message for="password"/>
+                    </p:panelGrid>
+
+                    <p:toolbar style="background: #C04000;">
+                        <f:facet name="left">
+                            <p:panelGrid columns="1" style="margin: 0 auto" class="ui-noborder">
+                                <p:commandButton value="Login" action="#{loginBean.login()}"/>
+
+                            </p:panelGrid>
+
+                        </f:facet>
+                    </p:toolbar>
+                </h:form>
+            </p:panelGrid>
+
+
+        </p:panelGrid>
+    </p:dialog>
+
+    <p:dialog id="forgotPasswordDialog" header="Forgot Password" widgetVar="forgotPasswordDlg" modal="true" showEffect="explode">
+        <h:form id="forgotPasswordForm">
+
+            <p:growl id="growl" showDetail="false" sticky="false" />
+
+            <p:panel id="forgotPasswordPanel" style="margin-bottom:20px">
+
+                <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true"/>
+
+                <p:panelGrid style="margin-top:20px" class="ui-noborder">
+
+                    <f:facet name="header">
+                        <p:row>
+                            <p:column colspan="2">Enter Your Username Or Email</p:column>
+                        </p:row>
+                    </f:facet>
+
+                    <p:row>
+                        <p:column colspan="2">
+                            <p:inputText id="username" value="#{forgotPasswordBean.usernameOrEmail}"/>
+                        </p:column>
+                    </p:row>
+
+                </p:panelGrid>
+
+                <p:outputLabel value=""/>
+                <p:commandButton value="Send Password"
+                                 icon="ui-icon-gear"
+                                 actionListener="#{forgotPasswordBean.sendPassword()}"/>
+
+            </p:panel>
+        </h:form>
+
+    </p:dialog>
+
+</h:body>
+</html>

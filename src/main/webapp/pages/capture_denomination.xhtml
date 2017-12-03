@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title></title>
+</h:head>
+
+<h:body>
+    <p:messages id="growl" showDetail="false" autoUpdate="true" closable="true"/>
+
+    <h:form id="captureDenominationsForm">
+        <p:panel header="Purchase Items">
+            <p:panelGrid columns="2" styleClass="panelGrid" layout="grid">
+
+                <p:outputLabel value="Select Item" />
+                <p:selectOneMenu value="#{captureDenominationsBean.selectedItem}"
+                                 style="width:160px"  >
+                    <f:selectItem itemValue="Coke@R12" itemLabel="Coke@R12" />
+                    <f:selectItem itemValue="Bar One@R15" itemLabel="Bar One@R15" />
+                    <f:selectItem itemValue="Filter Coffee@R25" itemLabel="Filter Coffee@R25" />
+                </p:selectOneMenu>
+            </p:panelGrid>
+        </p:panel>
+        <p:panel header="Capture Amount">
+            <p:panelGrid columns="2" styleClass="panelGrid" layout="grid">
+
+                <p:outputLabel value="Rands" />
+                <p:selectOneMenu value="#{captureDenominationsBean.selectedRand}"
+                                 style="width:160px"  >
+                    <f:selectItem itemValue="R200" itemLabel="R200" />
+                    <f:selectItem itemValue="R100" itemLabel="R100" />
+                    <f:selectItem itemValue="R50" itemLabel="R50" />
+                    <f:selectItem itemValue="R20" itemLabel="R20" />
+                    <f:selectItem itemValue="R10" itemLabel="R10" />
+
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Coins" />
+                <p:selectOneMenu value="#{captureDenominationsBean.selectedCoin}"
+                                 style="width:160px"  >
+                    <f:selectItem itemValue="" itemLabel="" />
+                    <f:selectItem itemValue="R5" itemLabel="R5" />
+                    <f:selectItem itemValue="R2" itemLabel="R2" />
+                    <f:selectItem itemValue="R1" itemLabel="R1" />
+                    <f:selectItem itemValue="R0.5" itemLabel="R0.5" />
+                    <f:selectItem itemValue="R0.2" itemLabel="R0.2" />
+                    <f:selectItem itemValue="R0.1" itemLabel="R0.1" />
+
+                </p:selectOneMenu>
+            </p:panelGrid>
+        </p:panel>
+        <p:panel header="Your Change Denominations">
+            <p:dataList id="change" value="#{captureDenominationsBean.denominations}" var="denomination" type="definition" style="font-size:20px;">
+                <f:facet name="header">
+                    Denominations for your change of "R#{captureDenominationsBean.change}"
+                </f:facet>
+                #{denomination}
+            </p:dataList>
+        </p:panel>
+        <p:toolbar styleClass="toolbar-no-border">
+            <f:facet name="left">
+                <p:commandButton value="Get Change"
+                                 action="#{captureDenominationsBean.dispenseCash()}"
+                                 update="change"
+                                 icon="ui-icon-search"/>
+            </f:facet>
+        </p:toolbar>
+
+    </h:form>
+
+</h:body>
+</html>
