@@ -14,3 +14,9 @@ After entering correct credentials, the system will navigate to the dispensing p
 
 Clicking "Get Change" will make a rest call to the server to get the denominations
 
+Source code is downloadable from
+
+https://github.com/obakengb/dispenser-client.git and
+https://github.com/obakengb/dispenser-server.git
+
+Apologies for not including unit tests. I had underestimated the effort of this assessment ;(
